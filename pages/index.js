@@ -14,9 +14,16 @@ import CreateTodo from "../components/Modals/CreateTodo";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import TodoItem from "../components/TodoItem/TodoItem";
+import dynamic from "next/dynamic";
+
+
+const Todos = dynamic(() =>
+  import("../components/Todos/Todos", { ssr: false })
+);
+
+
 const Home = () => {
   const [select, setSelect] = useState(10);
-  const todos = useSelector((state) => state.todoList.todos);
 
   useEffect(() => {}, []);
   return (
@@ -75,11 +82,7 @@ const Home = () => {
             justifyContent: "center",
           }}
         >
-          {todos
-            ? todos.map((todo, idx) => {
-                return <TodoItem key={idx} />;
-              })
-            : ""}
+          <Todos />
         </div>
       </Container>
     </div>
