@@ -1,0 +1,14 @@
+.titleInput,
+.decorationInput {
+  width: 100%;
+  border-radius: 0.5rem;
+  outline: none;
+  padding: 0.8rem;
+  border: 1px #ccc solid;
+  margin: 0.5rem 0;
+}
+.titleInput:focus,
+.decorationInput:focus {
+  border: 1.8px #0b66c1 solid;
+  background: rgb(245, 244, 244);
+}
