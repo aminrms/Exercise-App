@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { HYDRATE } from "next-redux-wrapper";
 // getTodos
 
 const getTodosFromLocaleStorage = () => {
@@ -125,14 +124,6 @@ const todoSlice = createSlice({
     },
     updateStatus(state, action) {
       state.status = action.payload.status;
-    },
-  },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action,
-      };
     },
   },
 });
