@@ -5,12 +5,13 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { wrapper } from "../store/store";
 import { Wait } from "../utils/Wait";
 import { useRouter } from "next/router";
+import Layout from "../components/Layout/Layout";
 function MyApp({ Component, pageProps, ...rest }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const theme = createTheme({
     typography: {
-      fontFamily: "",
+      fontFamily: "Poppins",
     },
   });
   useEffect(() => {
@@ -33,6 +34,7 @@ function MyApp({ Component, pageProps, ...rest }) {
     }
     loading();
   }, [router]);
+
   const { store } = wrapper.useWrappedStore(rest);
   return (
     <>
@@ -41,7 +43,9 @@ function MyApp({ Component, pageProps, ...rest }) {
       ) : (
         <ThemeProvider theme={theme}>
           <Provider store={store}>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </Provider>
         </ThemeProvider>
       )}

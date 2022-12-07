@@ -7,12 +7,9 @@ const getTodosFromLocaleStorage = () => {
     const todos = localStorage.getItem("todos");
     if (todos) {
       return JSON.parse(todos);
-    } else {
-      localStorage.setItem("todos", JSON.stringify([]));
-      return [];
     }
-  } else {
-    return false;
+    localStorage.setItem("todos", JSON.stringify([]));
+    return [];
   }
 };
 
@@ -35,6 +32,7 @@ const getSaveTodosFromLocaleStorage = () => {
 const initialStateTodos = {
   todos: getTodosFromLocaleStorage(),
   saveTodos: getSaveTodosFromLocaleStorage(),
+  status: "all",
 };
 
 // todoSlice
@@ -75,10 +73,14 @@ const todoSlice = createSlice({
       if (typeof window !== "undefined") {
         const todos = localStorage.getItem("todos");
         if (todos) {
-          const todosArray = JSON.parse(todos);
-          let existTodos = todosArray.filter((todo) => todo.id === id);
+          let todosArray = JSON.parse(todos);
 
-          localStorage.setItem("todos", JSON.stringify(todosArray));
+          let existTodos = state.todos.filter((todo) => todo.id !== id);
+
+          localStorage.setItem(
+            "todos",
+            JSON.stringify(todosArray.filter((todo) => todo.id !== id))
+          );
           state.todos = existTodos;
         }
       }
@@ -86,7 +88,7 @@ const todoSlice = createSlice({
     // editTodo
 
     editTodo(state, action) {
-      const { id, text } = action.id;
+      const { id, title, description, status } = action.payload;
       if (typeof window !== "undefined") {
         const todos = localStorage.getItem("todos");
 
@@ -94,7 +96,9 @@ const todoSlice = createSlice({
           const todosArray = JSON.parse(todos);
           let existTodo = todosArray.find((todos) => todos.id === id);
           if (existTodo) {
-            existTodo.text = text;
+            existTodo.title = title;
+            existTodo.description = description;
+            existTodo.status = status;
           }
           localStorage.setItem("todos", JSON.stringify(todosArray));
           state.todos = [...todosArray];
@@ -119,6 +123,9 @@ const todoSlice = createSlice({
         }
       }
     },
+    updateStatus(state, action) {
+      state.status = action.payload.status;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -130,6 +137,7 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, deleteTodo, editTodo, saveTodos } = todoSlice.actions;
+export const { addTodo, deleteTodo, editTodo, saveTodos, updateStatus } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;

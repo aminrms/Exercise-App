@@ -12,3 +12,7 @@
   border: 1.8px #0b66c1 solid;
   background: rgb(245, 244, 244);
 }
+.decorationInput {
+  resize: none;
+  height: 3rem;
+}

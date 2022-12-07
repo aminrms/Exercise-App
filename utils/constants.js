@@ -1,15 +1,15 @@
 
 export const selectOptions = [
-    {
-        name:'All',
-        value:'all'
-    },
-    {
-        name:'Completed',
-        value:'completed'
-    },
-    {
-        name:'Incomplete',
-        value:'incomplete'
-    }
-]
+  {
+    label: "All",
+    value: "all",
+  },
+  {
+    label: "Completed",
+    value: "completed",
+  },
+  {
+    label: "Uncompleted",
+    value: "uncompleted",
+  },
+];

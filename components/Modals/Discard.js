@@ -84,7 +84,12 @@ const Discard = ({
             <Button
               onClick={closeAllModal}
               variant="contained"
-              sx={{ borderRadius: "0.6rem", py: 1, px: 2 }}
+              sx={{
+                borderRadius: "0.6rem",
+                py: 1,
+                px: 2,
+                textTransform: "none",
+              }}
             >
               <Typography fontWeight={500} variant="subtitle2" color="white">
                 Discard

@@ -18,15 +18,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import Discard from "./Discard";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "../../styles/CreateTodo.module.css";
-import { addTodo } from "../../feature/reducers/todoSlice";
+import { addTodo, editTodo } from "../../feature/reducers/todoSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { styleBoxModal } from "../../styles/styles";
 
-const CreateTodo = ({ select }) => {
-  const [open, setOpen] = useState(false);
+const EditTodo = ({ todo, open, setOpen }) => {
   const [openDiscard, setOpenDiscard] = useState(false);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
   const dispatch = useDispatch();
 
   const formIsValid =
@@ -47,12 +48,10 @@ const CreateTodo = ({ select }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      addTodo({
+      editTodo({
+        id: todo?.id,
         title,
         description,
-        id: nanoid(),
-        status: "uncompleted",
-        time: new Date().toLocaleString(),
       })
     );
     setOpen(false);
@@ -61,15 +60,6 @@ const CreateTodo = ({ select }) => {
   };
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={openHandler}
-        sx={{ borderRadius: "0.6rem", py: 1, px: 2, textTransform: "none" }}
-      >
-        <Typography fontWeight={500} variant="subtitle2" color="white">
-          Add Task
-        </Typography>
-      </Button>
       <Modal
         open={open}
         onClose={closeHandler}
@@ -98,7 +88,7 @@ const CreateTodo = ({ select }) => {
                 color={"primary"}
                 fontWeight="700"
               >
-                Create Task
+                Edit Todo
               </Typography>
               <IconButton onClick={closeHandler}>
                 <CloseIcon />
@@ -194,4 +184,4 @@ const CreateTodo = ({ select }) => {
   );
 };
 
-export default CreateTodo;
+export default EditTodo;
