@@ -9,6 +9,7 @@ import Layout from "../components/Layout/Layout";
 function MyApp({ Component, pageProps, ...rest }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  
   const theme = createTheme({
     typography: {
       fontFamily: "Poppins",

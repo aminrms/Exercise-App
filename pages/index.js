@@ -2,23 +2,17 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import {
-  Button,
   Container,
   Box,
   Typography,
-  MenuItem,
   Stack,
 } from "@mui/material";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import CreateTodo from "../components/Modals/CreateTodo";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-import TodoItem from "../components/TodoItem/TodoItem";
+import { useDispatch } from "react-redux";
 import dynamic from "next/dynamic";
 import { selectOptions } from "../utils/constants";
 import { updateStatus } from "../feature/reducers/todoSlice";
 
-const Select = dynamic(() => import("react-select"), { ssr: false });
 const Todos = dynamic(() => import("../components/Todos/Todos.js"), {
   ssr: false,
 });
@@ -42,22 +36,21 @@ const Home = () => {
             display: "flex",
             alignItems: "center",
             width: { sm: "100%", md: "85%", lg: "65%", xl: "55%" },
-            justifyContent: "space-between",
+            justifyContent: "center",
             mt: "5rem",
             mb: "2rem",
             mx: "auto",
           }}
         >
           <Typography
-            variant="h4"
-            component={"h4"}
+            variant="h3"
+            component={"h3"}
             fontWeight={600}
             color="white"
           >
             {" "}
             Todo List
           </Typography>
-          <WbSunnyIcon />
         </Stack>
         <Stack
           sx={{
@@ -87,10 +80,12 @@ const Home = () => {
                   dispatch(updateStatus({ status: e.target?.value }));
                 }}
               >
-                {selectOptions.map((opt , idx) =>{
+                {selectOptions.map((opt, idx) => {
                   return (
-                    <option value={opt.value} key={idx}>{opt.label}</option>
-                  )
+                    <option value={opt.value} key={idx}>
+                      {opt.label}
+                    </option>
+                  );
                 })}
               </select>
             </Box>

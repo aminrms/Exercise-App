@@ -4,17 +4,12 @@ import {
   Modal,
   Backdrop,
   IconButton,
-  Avatar,
   Box,
-  Button,
   Stack,
   Typography,
-  InputLabel,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-
-import classes from "../../styles/CreateTodo.module.css";
 import { styleBoxModal } from "../../styles/styles";
 
 const Description = ({ description }) => {
@@ -71,25 +66,17 @@ const Description = ({ description }) => {
               sx={{
                 width: "100%",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                py: 1,
+                justifyContent: "flex-start",
+                py: 2,
                 px: 3,
-
-                minHeight: "120px",
               }}
             >
               <Typography
-                variant="body1"
+                variant="p"
                 color="InfoText"
                 sx={{
-                  overflowY: "auto",
-                  overflowX: "hidden",
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  minHeight: "120px",
-                  justifyContent: "center",
+                  textAlign: "justify"
+
                 }}
               >
                 {description}

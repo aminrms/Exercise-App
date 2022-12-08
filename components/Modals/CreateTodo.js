@@ -1,15 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   Fade,
   Modal,
   Backdrop,
   IconButton,
-  Avatar,
   Box,
   TextareaAutosize,
   Button,
-  CircularProgress,
-  TextField,
   Stack,
   Typography,
   InputLabel,
@@ -64,7 +61,8 @@ const CreateTodo = ({ select }) => {
       <Button
         variant="contained"
         onClick={openHandler}
-        sx={{ borderRadius: "0.6rem", py: 1, px: 2, textTransform: "none" }}
+        disableElevation
+        sx={{ borderRadius: "1rem", py: 1.5, px: 2.5, textTransform: "none" }}
       >
         <Typography fontWeight={500} variant="subtitle2" color="white">
           Add Task
